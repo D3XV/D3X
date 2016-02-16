@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MMOCore" default="jar" basedir=".">
+    
+	<property name="buildDir" value="${basedir}/build" />
+	<property name="classesDir" value="${basedir}/build/classes" />
+	
+    <target name="init" depends="clean" description="Create the output directories.">
+        <mkdir dir="${buildDir}"/>
+        <mkdir dir="${classesDir}"/>
+    </target>
+    
+    <target name="compile" depends="init" description="Compile the source.">
+        <javac srcdir="${basedir}" destdir="${classesDir}" includeantruntime="false" />
+    </target>
+    
+    <target name="jar" depends="compile" description="Create the jar file">
+        <jar destfile="${buildDir}/mmocore.jar">
+            <fileset dir="${classesDir}"/>
+            <manifest>
+                <attribute name="Main-Class" value="net.sf.l2j.mmocore.MMOCore"/>
+            </manifest>
+        </jar>
+	</target>
+    
+    <target name="clean"
+            description="Remove the output directories">
+        <delete dir="${buildDir}"/>
+    </target>
+</project>
